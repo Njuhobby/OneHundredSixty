@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TableComponent } from './table/table.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes:Routes=[
   {
@@ -14,7 +15,7 @@ const routes:Routes=[
     children:[
       {
         path:'',
-        loadChildren:''
+        loadChildren:'./admin-layout/admin-layout.module#AdminLayoutModule'
       }
     ]
   }
@@ -23,9 +24,10 @@ const routes:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    TableComponent,
-    UserProfileComponent
+    AdminLayoutComponent,
+    SidebarComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

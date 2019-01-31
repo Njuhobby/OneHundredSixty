@@ -1,13 +1,13 @@
 <div class="wrapper">
-  <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/image/sidebar-1.jpg">
+  <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/image/sidebar-1.jpg">
       <app-sidebar></app-sidebar>
       <div class="sidebar-background" style="background-image: url(./assets/image/sidebar-4.jpg)"></div>
   </div>
   <div class="main-panel">
       <app-navbar></app-navbar>
       <router-outlet></router-outlet>
-      <div *ngIf="isMaps('maps')">
+      <!--<div *ngIf="isMaps('maps')">
           <app-footer></app-footer>
-      </div>
+      </div>-->
   </div>
 </div>

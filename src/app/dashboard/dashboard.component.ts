@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist'
+import { GamesInfoService } from '../games-info.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import * as Chartist from 'chartist'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gamesInfoService:GamesInfoService) { }
 
   startAnimationForLineChart(chart) {
     let seq: any, delays: any, durations: any;
@@ -67,28 +68,29 @@ export class DashboardComponent implements OnInit {
     seq2 = 0;
   };
 
+  getPlayerRankingTrendForThePreviousGames(player:string):void{
+    this.gamesInfoService.getPlayerRankingTrendForThePreviousGames(player).subscribe(rankings => {
+      let dataPlayerRankingTrendChart: any = {
+        labels:[],
+        series:[rankings]
+      };
+      
+      let optionsPlayerRankingTrendChart: any = {
+        lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 0
+        }),
+        low: 0,
+        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var playerRankingTrendChart = new Chartist.Line('#playerRankingTrendChart', dataPlayerRankingTrendChart, optionsPlayerRankingTrendChart);
+      this.startAnimationForLineChart(playerRankingTrendChart);
+    });
+  }
+
   ngOnInit() {
-    const dataDailySalesChart: any = {
-      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [
-        [12, 17, 7, 17, 23, 18, 38]
-      ]
-    };
-
-    const optionsDailySalesChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
-    }
-
-    var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-    this.startAnimationForLineChart(dailySalesChart);
-
-
+    this.getPlayerRankingTrendForThePreviousGames("Hobby");
     /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
     const dataCompletedTasksChart: any = {

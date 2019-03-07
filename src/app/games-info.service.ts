@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Game } from "./model/game.model";
-import { RoadMapItem } from './model/road-map-item.model';
 import { Observable, of } from 'rxjs';
 import { RoadMap } from './model/road-map.model';
 import { element } from '@angular/core/src/render3';
@@ -21,129 +20,75 @@ export class GamesInfoService {
     this.games = [
       new Game(new Date("01/18/2019"), 0, "Hobby", "Yawei", "Ps", "Leon", 2,
         {
-          "items": [
-            new RoadMapItem("5", "Hobby", "", 20),
-            new RoadMapItem("8", "", "", 20),
-            new RoadMapItem("10", "", "", 30),
-            new RoadMapItem("K", "", "", 30),
-            new RoadMapItem("A", "", "", 100)
-          ]
+          "items": ["5","8", "10", "K", "A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "", "", 30)
-          ]
-        }),
+          "items": ["5"]
+        }, null,null,null,null),
 
       new Game(new Date("01/18/2019"), 1, "Hobby", "Yawei", "Ps", "Leon", 2,
         {
-          "items": [
-            new RoadMapItem("5", "", "", 20),
-            new RoadMapItem("8", "", "", 20),
-            new RoadMapItem("10", "", "", 30),
-            new RoadMapItem("K", "", "", 30),
-            new RoadMapItem("A", "", "", 100)
-          ]
+          "items": ["5","8","10","K","A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "", "", 30)
-          ]
-        }),
+          "items": ["5"]
+        },null,null,null,null),
 
       new Game(new Date("01/18/2019"), 2, "Leon", "Ps", "Yawei", "Hobby", 4,
         {
-          "items": [
-            new RoadMapItem("5", "", "", 20),
-            new RoadMapItem("8", "", "", 20),
-            new RoadMapItem("10", "", "", 30),
-            new RoadMapItem("K", "", "", 30),
-            new RoadMapItem("A", "", "", 100)
-          ]
+          "items": ["5", "8", "10", "K", "A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "", "", 80),
-            new RoadMapItem("8", "", "", 190),
-          ]
-        }),
+          "items": ["5","8"]
+        },null,null,null,null),
 
       new Game(new Date("01/19/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 5,
         {
-          "items": [
-            new RoadMapItem("5", "", "", 150),
-            new RoadMapItem("8", "", "", 120),
-            new RoadMapItem("10", "", "", 130),
-            new RoadMapItem("J", "", "", 180),
-            new RoadMapItem("K", "", "", 30),
-            new RoadMapItem("A", "", "", 100)
-          ]
+          "items": ["5", "8", "10", "K", "A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "", "", 80),
-            new RoadMapItem("8", "", "", 110),
-            new RoadMapItem("10", "", "", 100)
-          ]
-        }),
+          "items": ["5", "8", "10"]
+        },null,null,null,null),
 
       new Game(new Date("01/26/2019"), 0, "Yawei", "Ps", "Hobby", "WangChen", 2,
         {
-          "items": [
-            new RoadMapItem("5", "", "", 150),
-            new RoadMapItem("8", "", "", 120),
-            new RoadMapItem("10", "", "", 130),
-            new RoadMapItem("J", "", "", 180),
-            new RoadMapItem("K", "", "", 30),
-            new RoadMapItem("A", "", "", 100)
-          ]
+          "items": ["5", "10", "8", "10", "8", "10", "10", "K", "A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "", "", 80),
-            new RoadMapItem("8", "", "", 110),
-            new RoadMapItem("10", "", "", 100)
-          ]
-        }),
+          "items": ["5", "8", "10"]
+        },null,null,null,null),
 
       new Game(new Date("01/26/2019"), 1, "Yawei", "Ps", "Hobby", "WangChen", 3,
         {
-          "items": [
-            new RoadMapItem("5", "", "", 150),
-            new RoadMapItem("8", "", "", 120),
-            new RoadMapItem("10", "", "", 130),
-            new RoadMapItem("J", "", "", 180),
-            new RoadMapItem("K", "", "", 30),
-            new RoadMapItem("A", "", "", 100)
-          ]
+          "items": ["5","8","10","J","K","A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "", "", 80),
-            new RoadMapItem("8", "", "", 110),
-            new RoadMapItem("10", "", "", 100)
-          ]
-        }),
+          "items": ["5","8","10"]
+        },null,null,null,null),
 
       new Game(new Date("02/15/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 6,
         {
-          "items": [
-            new RoadMapItem("5", "", "", 140),
-            new RoadMapItem("10", "", "", 200),
-            new RoadMapItem("K", "", "", 180),
-            new RoadMapItem("k", "", "", 170), 
-            new RoadMapItem("A", "", "", 10)
-          ]
+          "items": ["5", "10", "K", "K", "K", "A"]
         },
         {
-          "items": [
-            new RoadMapItem("5", "Hobby", "", 40), 
-            new RoadMapItem("10", "", "", 140), 
-            new RoadMapItem("K", "Hobby", "", 200), 
-            new RoadMapItem("K", "", "", 190),
-            new RoadMapItem("A", "", "", 165)
-          ]
-        })
+          "items": ["5", "10", "k", "A"]
+        },null,null,null,null), 
+      
+      new Game(new Date("02/15/2019"), 1, "Yawei", "Ps", "Hobby", "Leon", 2, 
+      {
+        "items": ["5","6","8","10","J","K","A"]
+      }, 
+      {
+        "items":["5","8","10","Q"]
+      },null,null,null,null), 
+
+      new Game(new Date("02/15/2019"), 2, "Hobby", "Yawei", "Ps", "Leon", 3, 
+      {
+        "items":['5','7','9','10','K','A']
+      }, 
+      {
+        "items":['5','9','10','K']
+      }, null,null, 'Leon', '当日最颓，无一胜绩，一胜八负，永为谈资，拉我下水，荼毒队友')
     ];
     this.distinctDates = this.getDistinctDates();
   }
@@ -171,13 +116,35 @@ export class GamesInfoService {
     return result;
   }
 
-  avgPointsPerGame(): number {
-    let totalPoints = 0;
+  private increaseProperyCreateIfNotExists(instance:any, propertyName:string):void{
+    if(instance[propertyName] === undefined){
+      instance[propertyName] = 1;
+    }
+    else{
+      instance[propertyName]++;
+    }
+  }
+
+  cardsPlayedMost():string {
+    let cardsPlayedTime = {};
     this.games.forEach(element => {
-      let gameTotalPoints = element.winRoadMap.items.reduce((a, b) => a + b.pointsCollected, 0) + element.loseRoadMap.items.reduce((a, b) => a + b.pointsCollected, 0);
-      totalPoints += gameTotalPoints;
+      element.winRoadMap.items.forEach(item => {
+        this.increaseProperyCreateIfNotExists(cardsPlayedTime, item);
+      });
+      element.loseRoadMap.items.forEach(item => {
+        this.increaseProperyCreateIfNotExists(cardsPlayedTime, item);
+      });
     });
-    return totalPoints / this.games.length;
+
+    let cardPlayedMostTimes:string = null;
+    let maxTimes:number = 0;
+    for(let key of Object.keys(cardsPlayedTime)){
+      if(cardsPlayedTime[key] > maxTimes){
+        maxTimes = cardsPlayedTime[key];
+        cardPlayedMostTimes = key;
+      }
+    } 
+    return cardPlayedMostTimes;
   }
 
   private getDistinctDates(): Date[] {
@@ -208,11 +175,12 @@ export class GamesInfoService {
   }
 
   leagueTableUntilDate(date: Date): any {
-    let leagueTable: any;
-    let leagueTableMeta: any;
-    let ranking: any[];
+    let leagueTable: any = {};
+    let leagueTableMeta: any = {};
+    let ranking: any[] = [];
 
     this.players.forEach(element => {
+      leagueTableMeta[element] = {};
       leagueTableMeta[element]["winNumber"] = 0;
       leagueTableMeta[element]["loseNumber"] = 0;
       leagueTableMeta[element]["points"] = 0;
@@ -229,7 +197,7 @@ export class GamesInfoService {
     });
 
     this.players.forEach(element => {
-      leagueTableMeta[element]["points"] = leagueTableMeta["winNumber"] * 3;
+      leagueTableMeta[element]["points"] = leagueTableMeta[element]["winNumber"] * 3;
       ranking.push({ "player": element, "points": leagueTableMeta[element]["points"] });
     });
 
@@ -245,7 +213,7 @@ export class GamesInfoService {
     if (numberOfDistinctDates < 7) {
       numberOfDatesToCount = numberOfDistinctDates;
     }
-    let result: number[];
+    let result: number[] = [];
     for (let i = numberOfDistinctDates - numberOfDatesToCount; i < numberOfDistinctDates; i++) {
       let dateToCount: Date = this.distinctDates[i];
       let playerRanking = this.getPlayerRankingUntilDate(player, dateToCount);

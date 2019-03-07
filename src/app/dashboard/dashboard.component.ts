@@ -9,6 +9,10 @@ import { GamesInfoService } from '../games-info.service';
 })
 export class DashboardComponent implements OnInit {
 
+  numberOfGamesLastThirtyDays:number;
+  cardPlayedMost:string;
+  avgTime:number;
+
   constructor(private gamesInfoService:GamesInfoService) { }
 
   startAnimationForLineChart(chart) {
@@ -90,6 +94,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.avgTime = this.gamesInfoService.avgDurationPerGame();
+    this.cardPlayedMost = this.gamesInfoService.cardsPlayedMost();
+    this.numberOfGamesLastThirtyDays = this.gamesInfoService.numberOfGamesLastThirtyDays();
+    
     this.getPlayerRankingTrendForThePreviousGames("Hobby");
     /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 

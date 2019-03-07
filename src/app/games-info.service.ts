@@ -139,6 +139,9 @@ export class GamesInfoService {
     let cardPlayedMostTimes:string = null;
     let maxTimes:number = 0;
     for(let key of Object.keys(cardsPlayedTime)){
+      if(key == "5"){
+        continue;
+      }
       if(cardsPlayedTime[key] > maxTimes){
         maxTimes = cardsPlayedTime[key];
         cardPlayedMostTimes = key;

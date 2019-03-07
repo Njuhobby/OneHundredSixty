@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   numberOfGamesLastThirtyDays:number;
   cardPlayedMost:string;
-  avgTime:number;
+  avgTime:string;
 
   constructor(private gamesInfoService:GamesInfoService) { }
 
@@ -48,6 +48,8 @@ export class DashboardComponent implements OnInit {
 
     seq = 0;
   };
+
+  
   startAnimationForBarChart(chart) {
     let seq2: any, delays2: any, durations2: any;
 
@@ -84,7 +86,7 @@ export class DashboardComponent implements OnInit {
           tension: 0
         }),
         low: 0,
-        high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        high: 10, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
       }
 
@@ -94,10 +96,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.avgTime = this.gamesInfoService.avgDurationPerGame();
+    this.avgTime = this.gamesInfoService.avgDurationPerGame().toFixed(0);
     this.cardPlayedMost = this.gamesInfoService.cardsPlayedMost();
     this.numberOfGamesLastThirtyDays = this.gamesInfoService.numberOfGamesLastThirtyDays();
-    
+
     this.getPlayerRankingTrendForThePreviousGames("Hobby");
     /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 

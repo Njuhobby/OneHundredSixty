@@ -1,0 +1,16 @@
+<table class="table table-hover">
+  <thead class="text-warning">
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Points</th>
+    <th>Win%</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items;let i = index">
+      <td>{{i+1}}</td>
+      <td>{{item.player}}</td>
+      <td>{{item.points}}</td>
+      <td>{{item.winRate}}</td>
+    </tr>
+  </tbody>
+</table>

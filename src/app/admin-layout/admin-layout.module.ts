@@ -5,6 +5,7 @@ import { AdminLayoutRoutes } from'./admin-layout.routing';
 import { DashboardComponent} from '../dashboard/dashboard.component';
 import { TableComponent } from '../table/table.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { SimpleTableComponent } from '../simple-table/simple-table.component';
 
 import { 
   MatButtonModule, 
@@ -19,7 +20,8 @@ import {
   declarations: [
     DashboardComponent, 
     TableComponent, 
-    UserProfileComponent
+    UserProfileComponent,
+    SimpleTableComponent
   ],
   imports: [
     CommonModule, 

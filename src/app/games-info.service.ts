@@ -170,19 +170,6 @@ export class GamesInfoService {
     return -1;
   }
 
-  private findPlayerWinRateInLeagueTable(leagueTable:any, player:string):number{
-    let metaData = leagueTable["meta"];
-    let winNumber = metaData[player].winNumber;
-    let loseNumber = metaData[player].loseNumber;
-    let totalNumber = winNumber + loseNumber;
-    if(totalNumber === 0){
-      return 0;
-    }
-    else{
-      return winNumber/totalNumber;
-    }
-  }
-
   getPlayerRankingUntilDate(player: string, date: Date): number {
     if (this.cachedLeagueTables[date.toString()]) {
       return this.findPlayerRankingInLeagueTable(this.cachedLeagueTables[date.toString()], player);
@@ -194,11 +181,11 @@ export class GamesInfoService {
 
   getPlayerWinRateUntilDate(player: string, date: Date): number{
     if(this.cachedLeagueTables[date.toString()]){
-      return this.findPlayerWinRateInLeagueTable(this.cachedLeagueTables[date.toString()], player);
+      return this.cachedLeagueTables[date.toString()].meta[player].winRate;
     }
     
-    let leagueTable = this.leagueTableUntilDate(date);
-    return this.findPlayerWinRateInLeagueTable(this.cachedLeagueTables[date.toString()], player);
+    this.leagueTableUntilDate(date);
+    return this.cachedLeagueTables[date.toString()].meta[player].winRate;
   }
 
   leagueTableUntilDate(date: Date): any {
@@ -211,6 +198,7 @@ export class GamesInfoService {
       leagueTableMeta[element]["winNumber"] = 0;
       leagueTableMeta[element]["loseNumber"] = 0;
       leagueTableMeta[element]["points"] = 0;
+      leagueTableMeta[element]["winRate"] = 0;
     });
 
     this.games.forEach(element => {
@@ -225,7 +213,16 @@ export class GamesInfoService {
 
     this.players.forEach(element => {
       leagueTableMeta[element]["points"] = leagueTableMeta[element]["winNumber"] * 3;
-      ranking.push({ "player": element, "points": leagueTableMeta[element]["points"] });
+      let winNumber = leagueTableMeta[element].winNumber;
+      let loseNumber = leagueTableMeta[element].loseNumber;
+      let totalNumber = winNumber + loseNumber;
+      if(totalNumber === 0){
+        leagueTableMeta[element]["winRate"] = 0;
+      }
+      else{
+        leagueTableMeta[element]["winRate"] = winNumber/totalNumber;
+      }
+      ranking.push({ "player": element, "points": leagueTableMeta[element]["points"], "winRate":leagueTableMeta[element]["winRate"] });
     });
 
     leagueTable["meta"] = leagueTableMeta;
@@ -262,5 +259,20 @@ export class GamesInfoService {
       result.push(playerWinRate);
     }
     return of(result.map(i => {i = i*100; return parseFloat(i.toFixed(2));}));
+  }
+
+  getTheLatestLeagueTableRankings():[]{
+    let latestDate = this.distinctDates[this.distinctDates.length-1];
+    if(this.cachedLeagueTables[latestDate.toString()]){
+      return this.cachedLeagueTables[latestDate.toString()].ranking.slice(0,4).map(i => {
+        return {"player": i.player, "points":i.points, "winRate":(i.winRate * 100).toFixed(2)};
+      });
+    }
+    else{
+      this.leagueTableUntilDate(latestDate);
+      return this.cachedLeagueTables[latestDate.toString()].ranking.slice(0,4).map(i => {
+        return {"player": i.player, "points":i.points, "winRate":(i.winRate * 100).toFixed(2)};
+      });
+    }
   }
 }

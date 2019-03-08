@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   numberOfGamesLastThirtyDays:number;
   cardPlayedMost:string;
   avgTime:string;
+  currentPlayer:string;
 
   constructor(private gamesInfoService:GamesInfoService) { }
 
@@ -74,7 +75,7 @@ export class DashboardComponent implements OnInit {
     seq2 = 0;
   };
 
-  getPlayerRankingTrendForThePreviousGames(player:string):void{
+  private getPlayerRankingTrendForThePreviousGames(player:string):void{
     this.gamesInfoService.getPlayerRankingTrendForThePreviousGames(player).subscribe(rankings => {
       let dataPlayerRankingTrendChart: any = {
         labels:[],
@@ -85,8 +86,8 @@ export class DashboardComponent implements OnInit {
         lineSmooth: Chartist.Interpolation.cardinal({
           tension: 0
         }),
-        low: 0,
-        high: 10, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        low: 1,
+        high: 9, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
       }
 
@@ -95,36 +96,40 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  private getPlayerWinRateTrendForThePreviousGames(player:string):void{
+    this.gamesInfoService.getPlayerWinRateTrendForThePreviousGames(player).subscribe(winRates => {
+      let dataPlayerWinRateTrendChart:any = {
+        labels:[],
+        series:[winRates]
+      };
+
+      const optionsPlayerWinRateTrendChart: any = {
+        lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 0
+        }),
+        low: 0,
+        high: 100, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+        axisY:{
+          labelInterpolationFnc:function(value){
+            return value + "%";
+          }
+        },
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
+      };
+
+      var playerWinRateTrendChart = new Chartist.Line('#playerWinRateTrendChart', dataPlayerWinRateTrendChart, optionsPlayerWinRateTrendChart);
+      this.startAnimationForLineChart(playerWinRateTrendChart);
+    })
+  }
+
   ngOnInit() {
     this.avgTime = this.gamesInfoService.avgDurationPerGame().toFixed(0);
     this.cardPlayedMost = this.gamesInfoService.cardsPlayedMost();
     this.numberOfGamesLastThirtyDays = this.gamesInfoService.numberOfGamesLastThirtyDays();
+    this.currentPlayer = "Hobby";
 
-    this.getPlayerRankingTrendForThePreviousGames("Hobby");
-    /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-    const dataCompletedTasksChart: any = {
-      labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-      series: [
-        [230, 750, 450, 300, 280, 240, 200, 190]
-      ]
-    };
-
-    const optionsCompletedTasksChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-    }
-
-    var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-    // start animation for the Completed Tasks Chart - Line Chart
-    this.startAnimationForLineChart(completedTasksChart);
-
-
+    this.getPlayerRankingTrendForThePreviousGames(this.currentPlayer);
+    this.getPlayerWinRateTrendForThePreviousGames(this.currentPlayer);
 
     /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 

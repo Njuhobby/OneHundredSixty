@@ -151,11 +151,13 @@ export class GamesInfoService {
   }
 
   private getDistinctDates(): Date[] {
-    let datesSet = new Set<Date>();
+    let datesSet = [];
     this.games.forEach(element => {
-      datesSet.add(element.date);
+      if(datesSet.length === 0 || datesSet[datesSet.length-1].getTime() != element.date.getTime()){
+        datesSet.push(element.date);
+      }
     });
-    return Array.from(datesSet).sort((a, b) => { return Math.abs(a.getTime() - b.getTime()); })
+    return datesSet.sort((a, b) => { return Math.abs(a.getTime() - b.getTime()); })
   }
 
   private findPlayerRankingInLeagueTable(leagueTable: any, player: string): number {
@@ -168,6 +170,19 @@ export class GamesInfoService {
     return -1;
   }
 
+  private findPlayerWinRateInLeagueTable(leagueTable:any, player:string):number{
+    let metaData = leagueTable["meta"];
+    let winNumber = metaData[player].winNumber;
+    let loseNumber = metaData[player].loseNumber;
+    let totalNumber = winNumber + loseNumber;
+    if(totalNumber === 0){
+      return 0;
+    }
+    else{
+      return winNumber/totalNumber;
+    }
+  }
+
   getPlayerRankingUntilDate(player: string, date: Date): number {
     if (this.cachedLeagueTables[date.toString()]) {
       return this.findPlayerRankingInLeagueTable(this.cachedLeagueTables[date.toString()], player);
@@ -175,6 +190,15 @@ export class GamesInfoService {
 
     let leagueTable = this.leagueTableUntilDate(date);
     return this.findPlayerRankingInLeagueTable(leagueTable, player);
+  }
+
+  getPlayerWinRateUntilDate(player: string, date: Date): number{
+    if(this.cachedLeagueTables[date.toString()]){
+      return this.findPlayerWinRateInLeagueTable(this.cachedLeagueTables[date.toString()], player);
+    }
+    
+    let leagueTable = this.leagueTableUntilDate(date);
+    return this.findPlayerWinRateInLeagueTable(this.cachedLeagueTables[date.toString()], player);
   }
 
   leagueTableUntilDate(date: Date): any {
@@ -205,7 +229,7 @@ export class GamesInfoService {
     });
 
     leagueTable["meta"] = leagueTableMeta;
-    leagueTable["ranking"] = ranking.sort((a, b) => { return a["points"] - b["points"] });
+    leagueTable["ranking"] = ranking.sort((a, b) => { return b["points"] - a["points"] });
     this.cachedLeagueTables[date.toString()] = leagueTable;
     return leagueTable;
   }
@@ -213,7 +237,7 @@ export class GamesInfoService {
   getPlayerRankingTrendForThePreviousGames(player: string): Observable<number[]> {
     let numberOfDistinctDates: number = this.distinctDates.length;
     let numberOfDatesToCount: number = 7;
-    if (numberOfDistinctDates < 7) {
+    if (numberOfDistinctDates < numberOfDatesToCount) {
       numberOfDatesToCount = numberOfDistinctDates;
     }
     let result: number[] = [];
@@ -223,5 +247,20 @@ export class GamesInfoService {
       result.push(playerRanking);
     }
     return of(result);
+  }
+
+  getPlayerWinRateTrendForThePreviousGames(player:string):Observable<number[]>{
+    let numberOfDistinctDates: number = this.distinctDates.length;
+    let numberOfDatesToCount: number = 7;
+    if(numberOfDistinctDates < numberOfDatesToCount){
+      numberOfDatesToCount = numberOfDistinctDates;
+    }
+    let result:number[] = [];
+    for(let i = numberOfDistinctDates - numberOfDatesToCount; i < numberOfDistinctDates; i++){
+      let dateToCount:Date = this.distinctDates[i];
+      let playerWinRate = this.getPlayerWinRateUntilDate(player, dateToCount);
+      result.push(playerWinRate);
+    }
+    return of(result.map(i => {i = i*100; return parseFloat(i.toFixed(2));}));
   }
 }

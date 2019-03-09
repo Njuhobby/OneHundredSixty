@@ -163,4 +163,8 @@ export class DashboardComponent implements OnInit {
     //start animation for the Emails Subscription Chart
     this.startAnimationForBarChart(websiteViewsChart);
   }
+
+  refreshChartsForPlayer(event):void{
+    alert(event);
+  }
 }

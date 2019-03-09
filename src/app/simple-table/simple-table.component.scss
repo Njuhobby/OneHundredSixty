@@ -1,0 +1,9 @@
+.table.table-hover {
+    tr{
+        cursor: pointer;
+    }
+    tr.active{
+        background-color:#f5f5f5;
+    }
+}
+

@@ -197,7 +197,7 @@
             <p class="card-category">Simplified league table with only points and win rate.</p>
           </div>
           <div class="card-body table-responsive">
-            <app-simple-table></app-simple-table>
+            <app-simple-table (trClicked)='refreshChartsForPlayer($event)'></app-simple-table>
           </div>
         </div>
       </div>

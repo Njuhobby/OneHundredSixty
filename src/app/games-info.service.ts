@@ -65,6 +65,22 @@ export class GamesInfoService {
           "items": ["5","8","10"]
         },null,null,null,null),
 
+      new Game(new Date("02/14/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 4, 
+      {
+        "items": ["5", "8", "10", "J", "Q", "A"]
+      }, 
+      {
+        "items": ["5", "10", "J", "K", "J", "K"]
+      }, null, null, null, null),
+
+      new Game(new Date("02/14/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 4, 
+      {
+        "items": ["5", "8", "10", "J", "Q", "A"]
+      }, 
+      {
+        "items": ["5", "10", "J", "K", "J", "K"]
+      }, null, null, null, null),
+
       new Game(new Date("02/15/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 6,
         {
           "items": ["5", "10", "K", "K", "K", "A"]

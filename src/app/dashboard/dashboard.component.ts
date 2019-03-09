@@ -127,9 +127,7 @@ export class DashboardComponent implements OnInit {
     this.cardPlayedMost = this.gamesInfoService.cardsPlayedMost();
     this.numberOfGamesLastThirtyDays = this.gamesInfoService.numberOfGamesLastThirtyDays();
     this.currentPlayer = "Hobby";
-
-    this.getPlayerRankingTrendForThePreviousGames(this.currentPlayer);
-    this.getPlayerWinRateTrendForThePreviousGames(this.currentPlayer);
+    this.createThreeCharts();
 
     /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
@@ -164,7 +162,13 @@ export class DashboardComponent implements OnInit {
     this.startAnimationForBarChart(websiteViewsChart);
   }
 
-  refreshChartsForPlayer(event):void{
-    alert(event);
+  createThreeCharts():void{
+    this.getPlayerRankingTrendForThePreviousGames(this.currentPlayer);
+    this.getPlayerWinRateTrendForThePreviousGames(this.currentPlayer);
+  }
+
+  refreshChartsForPlayer(player):void{
+    this.currentPlayer = player;
+    this.createThreeCharts();
   }
 }

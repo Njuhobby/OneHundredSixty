@@ -1,15 +1,15 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { GamesInfoService } from '../games-info.service';
 import * as $ from 'node_modules/jquery/dist/jquery';
-import { fromEvent,of } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { fromEvent, of } from 'rxjs';
+import { throttleTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-simple-table',
   templateUrl: './simple-table.component.html',
   styleUrls: ['./simple-table.component.scss']
 })
-export class SimpleTableComponent implements OnInit {
+export class SimpleTableComponent implements OnInit, AfterViewInit {
 
   items: [];
   @Output() trClicked = new EventEmitter<string>();
@@ -19,14 +19,15 @@ export class SimpleTableComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.gamesInfoService.getTheLatestLeagueTableRankings();
+  }
+
+  ngAfterViewInit() {
     this.subscribeTableRowClicked();
   }
 
   subscribeTableRowClicked(): void {
-    alert($("#simpleTable tbody").html());
-    // fromEvent($("#simpleTable tr"), 'click')
-    //   .pipe(
-    //     map(event => 1))
-    //   .subscribe(val => alert(val));
+    fromEvent<{ "target": {} }>($("#simpleTable tr"), 'click')
+      .pipe(throttleTime(1000))
+      .subscribe(val => this.trClicked.emit($(val.target).closest("tr").children("td").eq(1).html()));
   }
 }

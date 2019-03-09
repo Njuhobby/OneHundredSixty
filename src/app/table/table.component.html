@@ -32,135 +32,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let item of items;let i = index">
                     <td>
-                      <img src="/assets/image/portrait/yawei.jpg">
+                      <img src="{{item.imgSrc}}">
                     </td>
-                    <td>
-                      Yawei
-                    </td>
-                    <td>
-                      7
-                    </td>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      19
-                    </td>
-                    <td>
-                      66%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/assets/image/portrait/ps.jpg">
-                    </td>
-                    <td>
-                      PS
-                    </td>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      16
-                    </td>
-                    <td>
-                      55%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/assets/image/portrait/Hobby.jpg">
-                    </td>
-                    <td>
-                      Hobby
-                    </td>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      10
-                    </td>
-                    <td>
-                      33%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/assets/image/portrait/Leon.jpg">
-                    </td>
-                    <td>
-                      Leon
-                    </td>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      25%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/assets/image/portrait/King.jpg">
-                    </td>
-                    <td>KoDB</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td>0%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/assets/image/portrait/Seven.jpg">
-                    </td>
-                    <td>
-                      Seven
-                    </td>
-                    <td>
-                      0
-                    </td>
-                    <td>
-                      0
-                    </td>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      0%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img src="/assets/image/portrait/Gin.jpg">
-                    </td>
-                    <td>
-                      Gin
-                    </td>
-                    <td>
-                      0
-                    </td>
-                    <td>
-                      0
-                    </td>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      0%
-                    </td>
+                    <td>{{item.player}}</td>
+                    <td>{{item.winNumber}}</td>
+                    <td>{{item.loseNumber}}</td>
+                    <td>{{item.points}}</td>
+                    <td>{{item.winRate}}%</td>
                   </tr>
                 </tbody>
               </table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GamesInfoService } from '../games-info.service';
 
 @Component({
   selector: 'app-table',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  items:[];
+  constructor(private gamesInfoService:GamesInfoService) { }
 
   ngOnInit() {
+    this.items = this.gamesInfoService.getTheLatestLeagueTableRankings(8);
   }
 
 }

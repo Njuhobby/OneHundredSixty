@@ -15,31 +15,31 @@ export class GamesInfoService {
 
   constructor() {
     this.cachedLeagueTables = [];
-    this.players = ["Hobby", "Yawei", "Ps", "Leon", "WangChen", "GaoZha", "Gin", "Seven", "KoDB"];
+    this.players = ["Hobby", "Yawei", "Ps", "Leon", "WangChen", "Gin", "Seven", "KoDB"];
     this.games = [
       new Game(new Date("01/18/2019"), 0, "Hobby", "Yawei", "Ps", "Leon", 2,
         {
-          "items": ["5","8", "10", "K", "A"]
+          "items": ["5", "8", "10", "K", "A"]
         },
         {
           "items": ["5"]
-        }, null,null,null,null),
+        }, null, null, null, null),
 
       new Game(new Date("01/18/2019"), 1, "Hobby", "Yawei", "Ps", "Leon", 2,
         {
-          "items": ["5","8","10","K","A"]
+          "items": ["5", "8", "10", "K", "A"]
         },
         {
           "items": ["5"]
-        },null,null,null,null),
+        }, null, null, null, null),
 
       new Game(new Date("01/18/2019"), 2, "Leon", "Ps", "Yawei", "Hobby", 4,
         {
           "items": ["5", "8", "10", "K", "A"]
         },
         {
-          "items": ["5","8"]
-        },null,null,null,null),
+          "items": ["5", "8"]
+        }, null, null, null, null),
 
       new Game(new Date("01/19/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 5,
         {
@@ -47,7 +47,7 @@ export class GamesInfoService {
         },
         {
           "items": ["5", "8", "10"]
-        },null,null,null,null),
+        }, null, null, null, null),
 
       new Game(new Date("01/26/2019"), 0, "Yawei", "Ps", "Hobby", "WangChen", 2,
         {
@@ -55,31 +55,31 @@ export class GamesInfoService {
         },
         {
           "items": ["5", "8", "10"]
-        },null,null,null,null),
+        }, null, null, null, null),
 
       new Game(new Date("01/26/2019"), 1, "Yawei", "Ps", "Hobby", "WangChen", 3,
         {
-          "items": ["5","8","10","J","K","A"]
+          "items": ["5", "8", "10", "J", "K", "A"]
         },
         {
-          "items": ["5","8","10"]
-        },null,null,null,null),
+          "items": ["5", "8", "10"]
+        }, null, null, null, null),
 
-      new Game(new Date("02/14/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 4, 
-      {
-        "items": ["5", "8", "10", "J", "Q", "A"]
-      }, 
-      {
-        "items": ["5", "10", "J", "K", "J", "K"]
-      }, null, null, null, null),
+      new Game(new Date("02/14/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 4,
+        {
+          "items": ["5", "8", "10", "J", "Q", "A"]
+        },
+        {
+          "items": ["5", "10", "J", "K", "J", "K"]
+        }, null, null, null, null),
 
-      new Game(new Date("02/14/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 4, 
-      {
-        "items": ["5", "8", "10", "J", "Q", "A"]
-      }, 
-      {
-        "items": ["5", "10", "J", "K", "J", "K"]
-      }, null, null, null, null),
+      new Game(new Date("02/14/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 4,
+        {
+          "items": ["5", "8", "10", "J", "Q", "A"]
+        },
+        {
+          "items": ["5", "10", "J", "K", "J", "K"]
+        }, null, null, null, null),
 
       new Game(new Date("02/15/2019"), 0, "Yawei", "Ps", "Hobby", "Leon", 6,
         {
@@ -87,23 +87,23 @@ export class GamesInfoService {
         },
         {
           "items": ["5", "10", "k", "A"]
-        },null,null,null,null), 
-      
-      new Game(new Date("02/15/2019"), 1, "Yawei", "Ps", "Hobby", "Leon", 2, 
-      {
-        "items": ["5","6","8","10","J","K","A"]
-      }, 
-      {
-        "items":["5","8","10","Q"]
-      },null,null,null,null), 
+        }, null, null, null, null),
 
-      new Game(new Date("02/15/2019"), 2, "Hobby", "Yawei", "Ps", "Leon", 3, 
-      {
-        "items":['5','7','9','10','K','A']
-      }, 
-      {
-        "items":['5','9','10','K']
-      }, null,null, 'Leon', '当日最颓，无一胜绩，一胜八负，永为谈资，拉我下水，荼毒队友')
+      new Game(new Date("02/15/2019"), 1, "Yawei", "Ps", "Hobby", "Leon", 2,
+        {
+          "items": ["5", "6", "8", "10", "J", "K", "A"]
+        },
+        {
+          "items": ["5", "8", "10", "Q"]
+        }, null, null, null, null),
+
+      new Game(new Date("02/15/2019"), 2, "Hobby", "Yawei", "Ps", "Leon", 3,
+        {
+          "items": ['5', '7', '9', '10', 'K', 'A']
+        },
+        {
+          "items": ['5', '9', '10', 'K']
+        }, null, null, 'Leon', '当日最颓，无一胜绩，一胜八负，永为谈资，拉我下水，荼毒队友')
     ];
     this.distinctDates = this.getDistinctDates();
   }
@@ -131,16 +131,16 @@ export class GamesInfoService {
     return result;
   }
 
-  private increaseProperyCreateIfNotExists(instance:any, propertyName:string):void{
-    if(instance[propertyName] === undefined){
+  private increaseProperyCreateIfNotExists(instance: any, propertyName: string): void {
+    if (instance[propertyName] === undefined) {
       instance[propertyName] = 1;
     }
-    else{
+    else {
       instance[propertyName]++;
     }
   }
 
-  cardsPlayedMost():string {
+  cardsPlayedMost(): string {
     let cardsPlayedTime = {};
     this.games.forEach(element => {
       element.winRoadMap.items.forEach(item => {
@@ -151,24 +151,24 @@ export class GamesInfoService {
       });
     });
 
-    let cardPlayedMostTimes:string = null;
-    let maxTimes:number = 0;
-    for(let key of Object.keys(cardsPlayedTime)){
-      if(key == "5"){
+    let cardPlayedMostTimes: string = null;
+    let maxTimes: number = 0;
+    for (let key of Object.keys(cardsPlayedTime)) {
+      if (key == "5") {
         continue;
       }
-      if(cardsPlayedTime[key] > maxTimes){
+      if (cardsPlayedTime[key] > maxTimes) {
         maxTimes = cardsPlayedTime[key];
         cardPlayedMostTimes = key;
       }
-    } 
+    }
     return cardPlayedMostTimes;
   }
 
   private getDistinctDates(): Date[] {
     let datesSet = [];
     this.games.forEach(element => {
-      if(datesSet.length === 0 || datesSet[datesSet.length-1].getTime() != element.date.getTime()){
+      if (datesSet.length === 0 || datesSet[datesSet.length - 1].getTime() != element.date.getTime()) {
         datesSet.push(element.date);
       }
     });
@@ -194,11 +194,11 @@ export class GamesInfoService {
     return this.findPlayerRankingInLeagueTable(leagueTable, player);
   }
 
-  getPlayerWinRateUntilDate(player: string, date: Date): number{
-    if(this.cachedLeagueTables[date.toString()]){
+  getPlayerWinRateUntilDate(player: string, date: Date): number {
+    if (this.cachedLeagueTables[date.toString()]) {
       return this.cachedLeagueTables[date.toString()].meta[player].winRate;
     }
-    
+
     this.leagueTableUntilDate(date);
     return this.cachedLeagueTables[date.toString()].meta[player].winRate;
   }
@@ -231,13 +231,13 @@ export class GamesInfoService {
       let winNumber = leagueTableMeta[element].winNumber;
       let loseNumber = leagueTableMeta[element].loseNumber;
       let totalNumber = winNumber + loseNumber;
-      if(totalNumber === 0){
+      if (totalNumber === 0) {
         leagueTableMeta[element]["winRate"] = 0;
       }
-      else{
-        leagueTableMeta[element]["winRate"] = winNumber/totalNumber;
+      else {
+        leagueTableMeta[element]["winRate"] = winNumber / totalNumber;
       }
-      ranking.push({ "player": element, "points": leagueTableMeta[element]["points"], "winRate":leagueTableMeta[element]["winRate"] });
+      ranking.push({ "player": element, "points": leagueTableMeta[element]["points"], "winNumber": leagueTableMeta[element]["winNumber"], "loseNumber": leagueTableMeta[element]["loseNumber"], "winRate": leagueTableMeta[element]["winRate"] });
     });
 
     leagueTable["meta"] = leagueTableMeta;
@@ -261,33 +261,56 @@ export class GamesInfoService {
     return of(result);
   }
 
-  getPlayerWinRateTrendForThePreviousGames(player:string):Observable<number[]>{
+  getPlayerWinRateTrendForThePreviousGames(player: string): Observable<number[]> {
     let numberOfDistinctDates: number = this.distinctDates.length;
     let numberOfDatesToCount: number = 7;
-    if(numberOfDistinctDates < numberOfDatesToCount){
+    if (numberOfDistinctDates < numberOfDatesToCount) {
       numberOfDatesToCount = numberOfDistinctDates;
     }
-    let result:number[] = [];
-    for(let i = numberOfDistinctDates - numberOfDatesToCount; i < numberOfDistinctDates; i++){
-      let dateToCount:Date = this.distinctDates[i];
+    let result: number[] = [];
+    for (let i = numberOfDistinctDates - numberOfDatesToCount; i < numberOfDistinctDates; i++) {
+      let dateToCount: Date = this.distinctDates[i];
       let playerWinRate = this.getPlayerWinRateUntilDate(player, dateToCount);
       result.push(playerWinRate);
     }
-    return of(result.map(i => {i = i*100; return parseFloat(i.toFixed(2));}));
+    return of(result.map(i => { i = i * 100; return parseFloat(i.toFixed(2)); }));
   }
 
-  getTheLatestLeagueTableRankings():[]{
-    let latestDate = this.distinctDates[this.distinctDates.length-1];
-    if(this.cachedLeagueTables[latestDate.toString()]){
-      return this.cachedLeagueTables[latestDate.toString()].ranking.slice(0,4).map(i => {
-        return {"player": i.player, "points":i.points, "winRate":(i.winRate * 100).toFixed(2)};
+  getTheLatestLeagueTableRankings(numberOfPlayersToShow): [] {
+    let latestDate = this.distinctDates[this.distinctDates.length - 1];
+    if (this.cachedLeagueTables[latestDate.toString()]) {
+      return this.cachedLeagueTables[latestDate.toString()].ranking.slice(0, numberOfPlayersToShow).map(i => {
+        return {"imgSrc":this.getPlayerImageSource(i.player), "player": i.player, "points": i.points, "winNumber": i.winNumber, "loseNumber": i.loseNumber, "winRate": (i.winRate * 100).toFixed(2) };
       });
     }
-    else{
+    else {
       this.leagueTableUntilDate(latestDate);
-      return this.cachedLeagueTables[latestDate.toString()].ranking.slice(0,4).map(i => {
-        return {"player": i.player, "points":i.points, "winRate":(i.winRate * 100).toFixed(2)};
+      return this.cachedLeagueTables[latestDate.toString()].ranking.slice(0, numberOfPlayersToShow).map(i => {
+        return {"imgSrc":this.getPlayerImageSource(i.player), "player": i.player, "points": i.points, "winNumber": i.winNumber, "loseNumber": i.loseNumber, "winRate": (i.winRate * 100).toFixed(2) };
       });
+    }
+  }
+
+  getPlayerImageSource(player) {
+    switch (player) {
+      case "Hobby":
+        return "/assets/image/portrait/hobby.jpg";
+      case "Yawei":
+        return "/assets/image/portrait/yawei.jpg";
+      case "Ps":
+        return "/assets/image/portrait/ps.jpg";
+      case "Leon":
+        return "/assets/image/portrait/Leon.jpg";
+      case "KoDB":
+        return "/assets/image/portrait/King.jpg";
+      case "Seven":
+        return "/assets/image/portrait/Seven.jpg";
+      case "Gin":
+        return "/assets/image/portrait/Gin.jpg";
+      case "WangChen":
+        return "/assets/image/portrait/WangChen.jpg";
+      default:
+        return "";
     }
   }
 }

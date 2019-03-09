@@ -18,7 +18,7 @@ export class SimpleTableComponent implements OnInit, AfterViewInit {
   constructor(private gamesInfoService: GamesInfoService) { }
 
   ngOnInit() {
-    this.items = this.gamesInfoService.getTheLatestLeagueTableRankings();
+    this.items = this.gamesInfoService.getTheLatestLeagueTableRankings(4);
   }
 
   ngAfterViewInit() {

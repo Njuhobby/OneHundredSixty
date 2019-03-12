@@ -1,0 +1,15 @@
+#userProfilesGrid{
+
+    .row + .row{
+        @media(min-width: 768px){
+            margin-top:40px;
+        }
+    }
+
+    .row .userProfileCard + .userProfileCard{
+        @media(max-width:767px){
+            margin-top:20px;
+        }
+    }
+}
+

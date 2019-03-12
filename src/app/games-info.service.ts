@@ -294,21 +294,21 @@ export class GamesInfoService {
   getPlayerImageSource(player) {
     switch (player) {
       case "Hobby":
-        return "/assets/image/portrait/hobby.jpg";
+        return "assets/image/portrait/hobby.jpg";
       case "Yawei":
-        return "/assets/image/portrait/yawei.jpg";
+        return "assets/image/portrait/yawei.jpg";
       case "Ps":
-        return "/assets/image/portrait/ps.jpg";
+        return "assets/image/portrait/ps.jpg";
       case "Leon":
-        return "/assets/image/portrait/Leon.jpg";
+        return "assets/image/portrait/Leon.jpg";
       case "KoDB":
-        return "/assets/image/portrait/King.jpg";
+        return "assets/image/portrait/King.jpg";
       case "Seven":
-        return "/assets/image/portrait/Seven.jpg";
+        return "assets/image/portrait/Seven.jpg";
       case "Gin":
-        return "/assets/image/portrait/Gin.jpg";
+        return "assets/image/portrait/Gin.jpg";
       case "WangChen":
-        return "/assets/image/portrait/WangChen.jpg";
+        return "assets/image/portrait/WangChen.jpg";
       default:
         return "";
     }
